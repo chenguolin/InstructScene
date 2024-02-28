@@ -111,7 +111,7 @@ url = hf_hub_url(repo_id="chenguolin/InstructScene_dataset", filename="threedfro
 os.system(f"wget {url} -O out/threedfront_objfeat_vqvae/checkpoints/epoch_01999.pth")
 ```
 
-You can also train the fVQ-VAE from scratch. However, you should <span style="color:red">update the quantization indices in the dataset</span> (stored in `dataset/InstructScene/threed_front_<room_type>/<scene_id>/models_info.pkl`) accordingly.
+You can also train the fVQ-VAE from scratch. However, you should **update the quantization indices in the dataset** (stored in `dataset/InstructScene/threed_front_<room_type>/<scene_id>/models_info.pkl`) accordingly.
 ```bash
 # bash scripts/train_objfeatvqvae.sh <tag> <gpu_id>
 bash scripts/train_objfeatvqvae.sh threedfront_objfeat_vqvae 0
