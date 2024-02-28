@@ -14,7 +14,7 @@ from src.utils import *
 from src.data import get_encoded_dataset, filter_function
 from src.data.utils_text import fill_templates
 from src.models import model_from_config, optimizer_from_config, ObjectFeatureVQVAE
-from models.clip_encoders import CLIPTextEncoder
+from src.models.clip_encoders import CLIPTextEncoder
 
 
 def main():
@@ -32,18 +32,6 @@ def main():
         type=str,
         default=None,
         help="Tag that refers to the current experiment"
-    )
-    parser.add_argument(
-        "--fvqvae_tag",
-        type=str,
-        required=True,
-        help="Tag that refers to the fVQ-VAE experiment"
-    )
-    parser.add_argument(
-        "--fvqvae_epoch",
-        type=int,
-        default=1999,
-        help="Epoch of the pretrained fVQ-VAE"
     )
     parser.add_argument(
         "--output_dir",
@@ -175,27 +163,12 @@ def main():
     else:
         raise ValueError(f"Invalid text encoder name: [{config['model']['text_encoder']}]")
 
-    USE_PRETRAINED_EMBED = False  # TODO: make it configurable
-    if USE_PRETRAINED_EMBED:
-        # Load pretrained VQ-VAE codebook weights
-        print("Load pretrained VQ-VAE codebook weights\n")
-        with open(f"{args.output_dir}/{args.fvqvae_tag}/objfeat_bounds.pkl", "rb") as f:
-            kwargs = pickle.load(f)
-        vqvae_model = ObjectFeatureVQVAE("openshape_vitg14", "gumbel", **kwargs)
-        ckpt_path = f"{args.output_dir}/{args.fvqvae_tag}/checkpoints/epoch_{args.fvqvae_epoch:05d}.pth"
-        vqvae_model.load_state_dict(torch.load(ckpt_path, map_location="cpu")["model"])
-        pretrained_objfeat_embeddings = vqvae_model.network.quantizer.embed.weight
-        kwargs = {"pretrained_objfeat_embeddings": pretrained_objfeat_embeddings}
-    else:
-        kwargs = {"pretrained_objfeat_embeddings": None}
-
     # Initialize the model and optimizer
     model = model_from_config(
         config["model"],
         train_dataset.n_object_types,
         train_dataset.n_predicate_types,
-        text_emb_dim=text_encoder.text_emb_dim,
-        **kwargs
+        text_emb_dim=text_encoder.text_emb_dim
     ).to(device)
     optimizer = optimizer_from_config(
         config["training"]["optimizer"],

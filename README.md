@@ -29,6 +29,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 
 
 ## 📢 News
+- **2024-02-28**: The pretrained weights of fVQ-VAE are released.
 - **2024-02-28**: The source code and preprocessed dataset are released.
 - **2024-02-07**: The paper is available on arXiv.
 - **2024-01-16**: InstructScene is accepted by ICLR 2024 for spotlight presentation.
@@ -37,8 +38,8 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 ## 📋 TODO
 - [x] Release the training and evaluation code
 - [x] Release the preprocessed dataset and rendered images on HuggingFace
-- [ ] Release the dataset preprocessing (e.g., ChatGPT API usage) scripts
-- [ ] Release the pre-trained weights of fVQ-VAE to quantize OpenShape/CLIP features of objects
+- [x] Release the pretrained weights of fVQ-VAE to quantize OpenShape features of 3D-FRONT objects
+- [ ] Release the dataset preprocessing scripts (ChatGPT API usage, quantization of OpenShape features, etc.)
 
 
 ## 🔧 Installation
@@ -98,11 +99,19 @@ Note that:
 - The training of "1. layout decoder" and "2. semantic graph prior" are independent and can be trained parallelly, as we use ground-truth semantic graphs to train the layout decoder.
 During inference, to render syntheiszed scenes from instruction prompts, one needs to have both the semantic graph prior and the layout decoder trained.
 
-- [TODO] We plan to provide the pretrained weights of fVQ-VAE. Our preprocessed dataset contains the original and quantized OpenShape features.
-
 ### 0️. 📦 fVQ-VAE: quantize OpenShape/CLIP features of objects
 
 #### Training
+We provide the pretrained weights of fVQ-VAE on [HuggingFace](https://huggingface.co/datasets/chenguolin/InstructScene_dataset). Our preprocessed dataset contains the original OpenShape features and **correspondingly quantization indices**.
+```python
+import os
+from huggingface_hub import hf_hub_url
+os.system("mkdir -p out/threedfront_objfeat_vqvae/checkpoints")
+url = hf_hub_url(repo_id="chenguolin/InstructScene_dataset", filename="threedfront_objfeat_vqvae_epoch_01999.pth", repo_type="dataset")
+os.system(f"wget {url} -O out/threedfront_objfeat_vqvae/checkpoints/epoch_01999.pth")
+```
+
+You can also train the fVQ-VAE from scratch. However, you should <span style="color:red">update the quantization indices in the dataset</span> (stored in `dataset/InstructScene/threed_front_<room_type>/<scene_id>/models_info.pkl`) accordingly.
 ```bash
 # bash scripts/train_objfeatvqvae.sh <tag> <gpu_id>
 bash scripts/train_objfeatvqvae.sh threedfront_objfeat_vqvae 0
@@ -136,8 +145,8 @@ Otherwise, it will only compute the iRecall score for evaluation.
 
 #### Training
 ```bash
-# bash scripts/train_sg_vq_objfeat.sh <room_type> <tag> <gpu_id> <fvqvae_tag>
-bash scripts/train_sg_vq_objfeat.sh bedroom bedroom_sgdiffusion_vq_objfeat 0 threedfront_objfeat_vqvae
+# bash scripts/train_sg_vq_objfeat.sh <room_type> <tag> <gpu_id>
+bash scripts/train_sg_vq_objfeat.sh bedroom bedroom_sgdiffusion_vq_objfeat 0
 ```
 
 #### Inference

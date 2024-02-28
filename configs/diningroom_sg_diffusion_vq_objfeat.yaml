@@ -12,17 +12,10 @@ data:
     train_stats: "dataset_stats.txt"
     room_layout_size: "64,64"
     max_length: 21
-    angle_num_bins: 24  # not used for sincos angle encoding
 
 model:
     name: "vq_objfeat_sg_gtf"
     text_encoder: "openai/clip-vit-base-patch32"
-    feature_extractor:
-        name: "resnet18"
-        input_channels: 1
-        feature_size: 128
-        freeze_bn: true
-        pretrained: true
 
 training:
     splits: ["train", "val"]

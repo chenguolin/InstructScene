@@ -21,7 +21,7 @@ from src.data.utils_text import compute_loc_rel, reverse_rel, fill_templates
 from src.models import model_from_config, ObjectFeatureVQVAE
 from src.models.sg2sc_diffusion import Sg2ScDiffusion
 from src.models.sg_diffusion_vq_objfeat import scatter_trilist_to_matrix
-from models.clip_encoders import CLIPTextEncoder
+from src.models.clip_encoders import CLIPTextEncoder
 
 
 def main():
