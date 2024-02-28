@@ -40,7 +40,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 - [x] Release the preprocessed dataset and rendered images on HuggingFace
 - [x] Release the pretrained weights of fVQ-VAE to quantize OpenShape features of 3D-FRONT objects
 - [ ] Release the dataset preprocessing scripts (ChatGPT API usage, quantization of OpenShape features, etc.)
-- [ ] Add a "FAQ" section to provide detailed explanations on the implementation
+- [ ] Add an "FAQ" section to provide detailed explanations on the implementation
 
 
 ## 🔧 Installation
