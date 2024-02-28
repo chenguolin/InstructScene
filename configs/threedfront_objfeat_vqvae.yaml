@@ -1,0 +1,43 @@
+data:
+    path_to_3d_front_dataset_directory: "dataset/3D-FRONT/3D-FRONT"
+    path_to_3d_future_dataset_directory: "dataset/3D-FRONT/3D-FUTURE-model"
+    path_to_model_info: "dataset/3D-FRONT/3D-FUTURE-model/model_info.json"
+    dataset_directory: "dataset/InstructScene/threed_front_bedroom"
+    annotation_file: "configs/bedroom_threed_front_splits.csv"
+    path_to_invalid_scene_ids: "configs/invalid_threed_front_rooms.txt"
+    path_to_invalid_bbox_jids: "configs/black_list.txt"
+    path_to_pickled_3d_futute_models: "dataset/InstructScene/threed_future_model_bedroom.pkl"
+    filter_fn: "threed_front_bedroom"
+
+model:
+    name: "objfeatvqvae"
+    objfeat_type: "openshape_vitg14"
+    vq_type: "gumbel"
+
+training:
+    splits: ["train", "val"]
+    epochs: 2000
+    steps_per_epoch: 500
+    batch_size: 128
+    save_frequency: 10
+    log_frequency: 1
+    optimizer:
+        name: "adamw"
+        lr: 0.0001
+        weight_decay: 0.02
+    loss_weights:
+        qloss: 1.
+        rec_mse: 1.
+    ema:
+        use_ema: true
+        max_decay: 0.9999
+        min_decay: 0.
+        update_after_step: 0
+        use_warmup: true
+        inv_gamma: 1.
+        power: 0.75
+
+validation:
+    splits: ["test"]
+    batch_size: 64
+    frequency: 1

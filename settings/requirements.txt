@@ -1,0 +1,10 @@
+scipy
+imageio
+trimesh
+shapely
+clean-fid
+tensorboard
+nltk
+einops
+transformers
+diffusers
