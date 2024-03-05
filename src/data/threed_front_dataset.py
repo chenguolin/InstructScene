@@ -48,7 +48,7 @@ class SG2SC(DatasetDecoratorBase):
             "objs": [],        # Tensor; (bs, n)
             "edges": [],       # Tensor; (bs, n, n)
             "obj_masks": [],   # LongTensor; (bs, n)
-            "room_masks": [],  # Tensor; (bs, 1, 64, 64)
+            # "room_masks": [],  # Tensor; (bs, 1, 64, 64)
             "objfeat_vq_indices": []  # LongTensor; (bs, n, k)
         }
 
@@ -64,12 +64,12 @@ class SG2SC(DatasetDecoratorBase):
                 sample_params["sizes"],
                 sample_params["angles"]
             ], axis=-1)
-            room_mask = sample_params["room_layout"]
+            # room_mask = sample_params["room_layout"]
             if self.objfeat_type is not None:
                 objfeats = sample_params[f"{self.objfeat_type}_features"]
 
             sample_params_pad["scene_uids"].append(scene_uid)
-            sample_params_pad["room_masks"].append(room_mask)
+            # sample_params_pad["room_masks"].append(room_mask)
 
             sample_params_pad["objs"].append(np.pad(
                 objs, (0, max_length - objs.shape[0]),
@@ -169,7 +169,7 @@ class SGDiffusion(DatasetDecoratorBase):
                 sample_params_new["edges"] = uppertri_edges
 
         sample_params_new["scene_uid"] = sample_params["scene_uid"]
-        sample_params_new["room_mask"] = sample_params["room_layout"]
+        # sample_params_new["room_mask"] = sample_params["room_layout"]
 
         if "descriptions" in sample_params:
             sample_params_new["descriptions"] = sample_params["descriptions"]
@@ -182,7 +182,7 @@ class SGDiffusion(DatasetDecoratorBase):
             for model_info in models_info
         ]
         object_descs = [
-            (model_info["blip_caption"], model_info["msft_caption"], model_info["chatgpt_caption"])
+            model_info["chatgpt_caption"]
             for model_info in models_info
         ]
         # Permutation augmentation
@@ -198,7 +198,7 @@ class SGDiffusion(DatasetDecoratorBase):
         objfeats_vq_pad = np.zeros([max_length, objfeats_vq.shape[1], objfeats_vq.shape[2]])  # (n, k, m)
         objfeats_vq_pad[:objfeats_vq.shape[0]] = objfeats_vq
         sample_params_new["objfeats_vq"] = objfeats_vq_pad * 2. - 1.  # {0, 1} -> {-1, 1}; (n, k, m)
-        sample_params_new["object_descs"] = object_descs  # [("xxx", "yyy", "zzz"), ...]
+        sample_params_new["object_descs"] = object_descs  # ["a corner side table with a round top", ...]
 
         return sample_params_new
 
@@ -210,10 +210,10 @@ class SGDiffusion(DatasetDecoratorBase):
             "edges": [],         # LongTensor; (bs, n*(n-1)//2)
             "boxes": [],         # Tensor; (bs, n, 8)
             "descriptions": [],  # dict; (bs,)
-            "room_masks": [],    # Tensor; (bs, 1, 64, 64)
+            # "room_masks": [],    # Tensor; (bs, 1, 64, 64)
             "objfeat_vq_indices": [],  # LongTensor; (bs, n*k)
             "objfeats_vq": [],         # Tensor; (bs, n, k*m)
-            "object_descs": []         # list of lists; (bs,)
+            "object_descs": []         # list of strings; (bs,)
         }
 
         for sample_params in samples:
@@ -237,8 +237,8 @@ class SGDiffusion(DatasetDecoratorBase):
                 descriptions = sample_params["descriptions"]
                 sample_params_batch["descriptions"].append(descriptions)
 
-            room_mask = sample_params["room_mask"]
-            sample_params_batch["room_masks"].append(room_mask)
+            # room_mask = sample_params["room_mask"]
+            # sample_params_batch["room_masks"].append(room_mask)
 
             objfeat_vq_indices = sample_params["objfeat_vq_indices"]  # (n, k)
             sample_params_batch["objfeat_vq_indices"].append(objfeat_vq_indices.reshape(-1))  # (n*k,)
@@ -246,7 +246,7 @@ class SGDiffusion(DatasetDecoratorBase):
             sample_params_batch["objfeats_vq"].append(objfeats_vq.reshape(objfeats_vq.shape[0], -1))  # (n, k*m)
 
             if "object_descs" in sample_params:
-                object_descs = sample_params["object_descs"]  # [("xxx", "yyy", "zzz"), ...]
+                object_descs = sample_params["object_descs"]  # ["a corner side table with a round top", ...]
                 sample_params_batch["object_descs"].append(object_descs)
 
         # Make torch tensors from the numpy tensors
@@ -285,14 +285,14 @@ def dataset_encoding_factory(
             dataset,
             box_ordering
         )
-        room_layout = RoomLayoutEncoder(box_ordered_dataset)
+        # room_layout = RoomLayoutEncoder(box_ordered_dataset)
         class_labels = ClassLabelsEncoder(box_ordered_dataset)
         translations = TranslationEncoder(box_ordered_dataset)
         sizes = SizeEncoder(box_ordered_dataset)
         angles = AngleEncoder(box_ordered_dataset)
 
         dataset_collection = DatasetCollection(
-            room_layout,
+            # room_layout,
             class_labels,
             translations,
             sizes,

@@ -590,7 +590,6 @@ class Add_Description(DatasetDecoratorBase):
         sample_params = self._dataset[idx]
         assert "relations" in sample_params, "Relations must be computed before adding descriptions."
 
-        # 1. Get scene descriptions
         if not os.path.exists(sample_params["description_path"]):
             descriptions = {
                 "obj_class_ids": [],  # [4("chair"), 18("table"), ...]; 4, 18 are class ids of the objects at 0 and 1 indices
@@ -618,7 +617,7 @@ class Add_Description(DatasetDecoratorBase):
                         except KeyError:
                             relations[o] = [(rev_p, s)]
 
-                # Get the main objects by the volumn of their ground bounding boxes
+                # Get the main objects by the area of their ground bounding boxes
                 obj_volumes = np.array(list(map(lambda x: x[0]*x[2], sample_params["sizes"])))
                 obj_volumn_sorted_indices = np.argsort(obj_volumes)[::-1]
                 main_obj_indices = obj_volumn_sorted_indices[:min(3, len(obj_volumn_sorted_indices))]  # top 3 main objects
