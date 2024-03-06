@@ -284,7 +284,7 @@ def main():
                         if not isinstance(v, list):
                             val_batch[k] = v.to(device)
                     # Compute the loss
-                    val_losses = model.compute_losses(batch, vqvae_model=vqvae_model)
+                    val_losses = model.compute_losses(val_batch, vqvae_model=vqvae_model)
                     val_total_loss = torch.zeros(1, device=device)
                     for k, v in val_losses.items():
                         if k in loss_weights:
@@ -292,7 +292,7 @@ def main():
                         else:  # weight is not specified
                             val_total_loss += v
 
-                    StatsLogger.instance().update_loss(val_total_loss.item() * batch["objs"].shape[0], batch["objs"].shape[0])
+                    StatsLogger.instance().update_loss(val_total_loss.item() * val_batch["objs"].shape[0], val_batch["objs"].shape[0])
                     StatsLogger.instance().print_progress(i, val_b)
 
             writer.add_scalar("validation/loss", StatsLogger.instance().loss, i * steps_per_epoch + b)
