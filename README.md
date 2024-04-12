@@ -29,6 +29,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 
 
 ## 📢 News
+- **2024-04-12**: Script for caption refinement by OpenAI ChatGPT is uploaded (sorry for the late update).
 - **2024-02-28**: The pretrained weights of fVQ-VAE are released.
 - **2024-02-28**: The source code and preprocessed dataset are released.
 - **2024-02-07**: The paper is available on arXiv.
@@ -39,8 +40,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 - [x] Release the training and evaluation code
 - [x] Release the preprocessed dataset and rendered images on HuggingFace
 - [x] Release the pretrained weights of fVQ-VAE to quantize OpenShape features of 3D-FRONT objects
-- [ ] Release the dataset preprocessing scripts (ChatGPT API usage, quantization of OpenShape features, etc.)
-- [ ] Add an "FAQ" section to provide detailed explanations on the implementation
+- [x] Release the script for caption refinement by OpenAI ChatGPT
 
 
 ## 🔧 Installation
