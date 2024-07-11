@@ -29,6 +29,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 
 
 ## 📢 News
+- **2024-07-11**: Unofficial pretrained parameters of two-stage generative models are provided by [@arjuntheprogrammer](https://github.com/arjuntheprogrammer). Thank you very much! Please see [issue#9](https://github.com/chenguolin/InstructScene/issues/9) for more information.
 - **2024-04-12**: Script for caption refinement by OpenAI ChatGPT is uploaded (sorry for the late update).
 - **2024-02-28**: The pretrained weights of fVQ-VAE are released.
 - **2024-02-28**: The source code and preprocessed dataset are released.
