@@ -282,8 +282,7 @@ def main():
     # Create EMA for the sg2sc model
     ema_config = config["training"]["ema"]
     if ema_config["use_ema"]:
-        # sg2sc_ema_states = EMAModel(model.parameters())
-        sg2sc_ema_states = EMAModel(sg2c_model.parameters())
+        sg2sc_ema_states = EMAModel(sg2sc_model.parameters())
         sg2sc_ema_states.to(device)
     else:
         sg2sc_ema_states: EMAModel = None
