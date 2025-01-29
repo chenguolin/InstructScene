@@ -8,7 +8,7 @@ InstructScene: Instruction-Driven 3D Indoor Scene Synthesis with Semantic Graph 
 
 [![arXiv](https://img.shields.io/badge/arXiv-2402.04717-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2402.04717)
 [![Project page](https://img.shields.io/badge/Project-Page-brightgreen)](https://chenguolin.github.io/projects/InstructScene)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
+[![Dataset](https://img.shields.io/badge/HF-Dataset-yellow)](https://huggingface.co/datasets/chenguolin/InstructScene_dataset)
 
 <p>
     <img width="240" alt="bedroom" src="./assets/bedroom_1.gif">
@@ -22,26 +22,35 @@ InstructScene: Instruction-Driven 3D Indoor Scene Synthesis with Semantic Graph 
 
 </h4>
 
-This repository contains the official implementation of the paper: [InstructScene: Instruction-Driven 3D Indoor Scene Synthesis with Semantic Graph Prior](https://arxiv.org/abs/2402.04717), which is accepted by ICLR 2024 for spotlight presentation.
+This repository contains the official implementation of the paper: [InstructScene: Instruction-Driven 3D Indoor Scene Synthesis with Semantic Graph Prior](https://arxiv.org/abs/2402.04717), which is accepted to ICLR 2024 for spotlight presentation.
 InstructScene is a generative framework to synthesize 3D indoor scenes from instructions. It is composed of a semantic graph prior and a layout decoder.
 
 Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have any questions or suggestions.
 
 
+## 🔥 See Also
+
+You may also be interested in our other works:
+- [**InstructLayout**](https://arxiv.org/abs/2407.07580): extends InstructScene to generate 2D layouts from instructions.
+- [**[ICLR 2025] DiffSplat**](https://github.com/chenguolin/DiffSplat): generates individual 3D objects that can replace the retrieving operation in InstructScene.
+
+
 ## 📢 News
+
 - **2024-07-11**: Unofficial pretrained parameters of two-stage generative models are provided by [@arjuntheprogrammer](https://github.com/arjuntheprogrammer). Thank you very much! Please see [issue#9](https://github.com/chenguolin/InstructScene/issues/9) for more information.
 - **2024-04-12**: Script for caption refinement by OpenAI ChatGPT is uploaded (sorry for the late update).
 - **2024-02-28**: The pretrained weights of fVQ-VAE are released.
 - **2024-02-28**: The source code and preprocessed dataset are released.
 - **2024-02-07**: The paper is available on arXiv.
-- **2024-01-16**: InstructScene is accepted by ICLR 2024 for spotlight presentation.
+- **2024-01-16**: InstructScene is accepted to ICLR 2024 for spotlight presentation.
 
 
 ## 📋 TODO
-- [x] Release the training and evaluation code
-- [x] Release the preprocessed dataset and rendered images on HuggingFace
-- [x] Release the pretrained weights of fVQ-VAE to quantize OpenShape features of 3D-FRONT objects
-- [x] Release the script for caption refinement by OpenAI ChatGPT
+
+- [x] Release the training and evaluation code.
+- [x] Release the preprocessed dataset and rendered images on HuggingFace.
+- [x] Release the pretrained weights of fVQ-VAE to quantize OpenShape features of 3D-FRONT objects.
+- [x] Release the script for caption refinement by OpenAI ChatGPT.
 
 
 ## 🔧 Installation
