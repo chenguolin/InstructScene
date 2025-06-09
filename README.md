@@ -31,7 +31,7 @@ Feel free to contact me (chenguolin@stu.pku.edu.cn) or open an issue if you have
 ## 🔥 See Also
 
 You may also be interested in our other works:
-- [**[arXiv 2506] PartCrafter**](https://wgsxm.github.io/projects/partcrafter): a 3D-native DiT that can directly generate 3D scenes from a single image with multiple objects.
+- [**[arXiv 2506] PartCrafter**](https://github.com/wgsxm/PartCrafter): a 3D-native DiT that can directly generate 3D scenes from a single image with multiple objects.
 - [**[ICLR 2025] DiffSplat**](https://github.com/chenguolin/DiffSplat): generates individual 3D objects that can replace the retrieving operation in InstructScene.
 - [**[arXiv 2407] InstructLayout**](https://arxiv.org/abs/2407.07580): extends InstructScene to generate 2D layouts from instructions.
 
