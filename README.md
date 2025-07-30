@@ -34,11 +34,13 @@ You may also be interested in our other works:
 - [**[arXiv 2507] MoVieS**](https://github.com/chenguolin/MoVieS): a feed-forward model for 4D scene reconstruction from monocular videos.
 - [**[arXiv 2506] PartCrafter**](https://github.com/wgsxm/PartCrafter): a 3D-native DiT that can directly generate 3D scenes from a single image.
 - [**[ICLR 2025] DiffSplat**](https://github.com/chenguolin/DiffSplat): generates individual 3D objects that can replace the retrieving in InstructScene.
-- [**[arXiv 2407] InstructLayout**](https://arxiv.org/abs/2407.07580): extends InstructScene to generate 2D layouts from instructions.
+- [**[TPAMI 2025] InstructLayout**](https://arxiv.org/abs/2407.07580): extends InstructScene to generate 2D layouts from instructions.
 
 
 ## 📢 News
 
+- **2025-07-31**: Unofficial pretrained checkpoints for dining and living rooms are provided by [@ydove0324](https://github.com/ydove0324). Thank you very much! Please download checkpoints [here🤗](https://huggingface.co/datasets/chenguolin/InstructScene_dataset/tree/main)。
+- **2025-07-27**: An extension of InstructScene, [InstructLayout](https://arxiv.org/abs/2407.07580) is accepted to T-PAMI 2025.
 - **2024-07-11**: Unofficial pretrained parameters of two-stage generative models are provided by [@arjuntheprogrammer](https://github.com/arjuntheprogrammer). Thank you very much! Please see [issue#9](https://github.com/chenguolin/InstructScene/issues/9) for more information.
 - **2024-04-12**: Script for caption refinement by OpenAI ChatGPT is uploaded (sorry for the late update).
 - **2024-02-28**: The pretrained weights of fVQ-VAE are released.
