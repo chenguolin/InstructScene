@@ -7,8 +7,9 @@ InstructScene: Instruction-Driven 3D Indoor Scene Synthesis with Semantic Graph 
 [Chenguo Lin](https://chenguolin.github.io), [Yadong Mu](http://www.muyadong.com)
 
 [![arXiv](https://img.shields.io/badge/arXiv-2402.04717-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2402.04717)
-[![Project page](https://img.shields.io/badge/Project-Page-brightgreen)](https://chenguolin.github.io/projects/InstructScene)
-[![Dataset](https://img.shields.io/badge/HF-Dataset-yellow)](https://huggingface.co/datasets/chenguolin/InstructScene_dataset)
+[![Project page](https://img.shields.io/badge/🏠-Project%20Page-blue)](https://chenguolin.github.io/projects/InstructScene)
+[![Dataset](https://img.shields.io/badge/🤗-Dataset-ffbd00.svg)](https://huggingface.co/datasets/chenguolin/InstructScene_dataset)
+[![Model](https://img.shields.io/badge/🤗-Model-ffbd00.svg)](https://huggingface.co/datasets/chenguolin/InstructScene_dataset/tree/main)
 
 <p>
     <img width="240" alt="bedroom" src="./assets/bedroom_1.gif">
